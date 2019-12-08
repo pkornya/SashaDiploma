@@ -5,21 +5,45 @@
 #include <QtPrintSupport/QPrinter>
 #include <QtPrintSupport/QPrintDialog>
 #include <QPixmap>
-#include <QMessageBox>
+#include <QDesktopServices>
+#include <QUrl>
 
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
-     ui(new Ui::MainWindow)
+    ui(new Ui::MainWindow)
 {
-     ui->setupUi(this);
+    ui->setupUi(this);
     setAttribute(Qt::WA_DeleteOnClose);
 
+    const QRect rect(500,500,500,500);
+
+    setGeometry(rect);
+
+    connect(ui->siteButton, SIGNAL(clicked(bool)), this, SLOT(on_siteButton_clicked()));
+    connect(ui->helpDeskButton, SIGNAL(clicked(bool)), this, SLOT(on_helpDeskButton_clicked()));
 
     QPixmap picture("C:/Users/pasha/Downloads/13.png");
     ui->label_picture->setPixmap(picture);
+
+    window = new QWidget;
+    window->setGeometry(rect);
+    management_button = new QPushButton("Управління телефонією");
+    server_button = new QPushButton("Управління поштовим сервером");
+    storage_button = new QPushButton("Файлове сховище");
+    back_button = new QPushButton("Назад");
+
+    layout = new QHBoxLayout;
+    layout->addWidget(management_button);
+    layout->addWidget(server_button);
+    layout->addWidget(storage_button);
+    layout->addWidget(back_button);
+
+    window->setLayout(layout);
+
+    connect(back_button, SIGNAL(pressed()), this, SLOT(on_backButton_clicked()));
 
     createActions();
     createMenus();
@@ -88,16 +112,42 @@ void MainWindow::print()
 
 void MainWindow::about()
 {
-    QMessageBox::about(this, tr("About Notepad"),
-            tr("<h2>Notepad 3.3 </h2>"
-            "<p>Copyright &copy; 2018 Software Inc."
-            "<p>Notepad is a small apllication which "
-               "gives users an opportunity to work with text files "
-               "and edit them. You can also print files. "
-               "Ссаня сынок или доця"));
+
 }
 
 MainWindow::~MainWindow()
 {
     delete ui;
+}
+
+void MainWindow::on_siteButton_clicked()
+{
+    hide();
+    window->show();
+}
+
+void MainWindow::on_helpDeskButton_clicked()
+{
+    QDesktopServices::openUrl(QUrl("https://support.duxit.ua/issues"));
+}
+
+void MainWindow::on_clientButton_clicked()
+{
+
+}
+
+void MainWindow::on_employeeButton_clicked()
+{
+
+}
+
+void MainWindow::on_knowledgeButton_clicked()
+{
+
+}
+
+void MainWindow::on_backButton_clicked()
+{
+    window->hide();
+    show();
 }
