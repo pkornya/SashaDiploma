@@ -16,6 +16,23 @@ public:
     ~MainWindow();
 
 private:
+    void createActions();
+    void createMenus();
+
+private slots:
+    void fileNew();
+    void print();
+    void about();
+
+private:
+    QMenu       *menu;
+
+    QAction     *newAction;
+    QAction     *printAction;
+    QAction     *closeAction;
+    QAction     *exitAction;
+    QAction     *aboutQtAction;
+
     Ui::MainWindow *ui;
 };
 

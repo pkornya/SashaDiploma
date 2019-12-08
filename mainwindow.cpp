@@ -1,6 +1,13 @@
+#include <QApplication>
+#include <QAction>
+#include <QMenuBar>
+#include <QCloseEvent>
+#include <QtPrintSupport/QPrinter>
+#include <QtPrintSupport/QPrintDialog>
+#include <QPixmap>
+
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
-#include <QPixmap>
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
