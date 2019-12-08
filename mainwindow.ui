@@ -64,21 +64,21 @@
      <item row="3" column="1">
       <widget class="QPushButton" name="pushButton_2">
        <property name="text">
-        <string>HelpDesk</string>
+        <string>База знань</string>
        </property>
       </widget>
      </item>
      <item row="1" column="1">
       <widget class="QPushButton" name="pushButton_5">
        <property name="text">
-        <string>База знань</string>
+        <string>Співробітники</string>
        </property>
       </widget>
      </item>
      <item row="0" column="0" colspan="2">
       <widget class="QPushButton" name="pushButton_4">
        <property name="text">
-        <string>Співробітники</string>
+        <string>HelpDesk</string>
        </property>
       </widget>
      </item>
@@ -94,18 +94,6 @@
      <height>21</height>
     </rect>
    </property>
-   <widget class="QMenu" name="menu">
-    <property name="title">
-     <string>Файл</string>
-    </property>
-   </widget>
-   <widget class="QMenu" name="menu_2">
-    <property name="title">
-     <string>Про програму</string>
-    </property>
-   </widget>
-   <addaction name="menu"/>
-   <addaction name="menu_2"/>
   </widget>
   <widget class="QToolBar" name="mainToolBar">
    <attribute name="toolBarArea">
