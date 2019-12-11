@@ -38,10 +38,15 @@ public slots:
     void on_clientButton_clicked();
     void on_employeeButton_clicked();
     void on_knowledgeButton_clicked();
+
     void on_backButton_clicked();
+    void on_storageButton_clicked();
+    void on_managementButton_clicked();
+    void on_serverButton_clicked();
+    void on_antivirusButton_clicked();
 
 private:
-//    QMenu       *menu;
+    QMenu       *menu;
 
     QAction     *newAction;
     QAction     *printAction;
@@ -50,12 +55,14 @@ private:
     QAction     *aboutQtAction;
 
 
+    QWidget     *window = nullptr;
+
     QPushButton *back_button;
-    QPushButton *forward_button;
-    QWidget *window = nullptr;
     QPushButton *management_button;
     QPushButton *server_button;
     QPushButton *storage_button;
+    QPushButton *antivirus_button;
+
     QGridLayout *layout;
     QGroupBox* siteGroupBox;
 
@@ -70,8 +77,6 @@ private:
     QPushButton *knowledgeButton;
     QPushButton *employeeButton;
     QPushButton *helpDeskButton;
-    QMenuBar *menuBar;
-
 };
 
 #endif // MAINWINDOW_H
