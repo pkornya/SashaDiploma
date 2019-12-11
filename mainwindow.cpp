@@ -7,49 +7,70 @@
 #include <QPixmap>
 #include <QDesktopServices>
 #include <QUrl>
+#include <QDebug>
+#include <QPushButton>
+#include <QWidget>
+#include <QPushButton>
+#include <QLabel>
+#include <QLayout>
+#include <QGroupBox>
 
 #include "mainwindow.h"
-#include "ui_mainwindow.h"
 
-MainWindow::MainWindow(QWidget *parent) :
-    QMainWindow(parent),
-    ui(new Ui::MainWindow)
+CoolWindow::CoolWindow(QWidget *parent) :
+    QMainWindow(parent)
 {
-    ui->setupUi(this);
     setAttribute(Qt::WA_DeleteOnClose);
 
     const QRect rect(500,500,500,500);
 
     setGeometry(rect);
 
-    connect(ui->siteButton, SIGNAL(clicked(bool)), this, SLOT(on_siteButton_clicked()));
-    connect(ui->helpDeskButton, SIGNAL(clicked(bool)), this, SLOT(on_helpDeskButton_clicked()));
-
     QPixmap picture("C:/Users/pasha/Downloads/13.png");
     ui->label_picture->setPixmap(picture);
 
-    window = new QWidget;
-    window->setGeometry(rect);
-    management_button = new QPushButton("Управління телефонією");
-    server_button = new QPushButton("Управління поштовим сервером");
-    storage_button = new QPushButton("Файлове сховище");
-    back_button = new QPushButton("Назад");
+    // BEGIN
+//    if (MainWindow->objectName().isEmpty())
+//        MainWindow->setObjectName(QStringLiteral("MainWindow"));
+    resize(474, 384);
+    QIcon icon;
+    icon.addFile(QStringLiteral("C:/Users/pasha/Downloads/systems-administrator-job-description.jpg"), QSize(), QIcon::Normal, QIcon::Off);
+    setWindowIcon(icon);
 
-    layout = new QHBoxLayout;
-    layout->addWidget(management_button);
-    layout->addWidget(server_button);
-    layout->addWidget(storage_button);
-    layout->addWidget(back_button);
+    createMainWidget();
+    createSiteWidget();
 
-    window->setLayout(layout);
+    setCentralWidget(centralWidget);
 
-    connect(back_button, SIGNAL(pressed()), this, SLOT(on_backButton_clicked()));
+//    menuBar = new QMenuBar();
+//    menuBar->setObjectName(QStringLiteral("menuBar"));
+//    menuBar->setGeometry(QRect(0, 0, 474, 21));
+//    setMenuBar(menuBar);
+
+    // END
+
+//    window = new QWidget;
+//    management_button = new QPushButton("Управління телефонією");
+//    server_button = new QPushButton("Управління поштовим сервером");
+//    storage_button = new QPushButton("Файлове сховище");
+
+//    layout = new QHBoxLayout;
+//    layout->addWidget(management_button);
+//    layout->addWidget(server_button);
+//    layout->addWidget(storage_button);
+//    layout->addWidget(back_button);
+
+//    window->setLayout(layout);
 
     createActions();
-    createMenus();
+//    createMenus();
+
+    connect(siteButton, SIGNAL(clicked(bool)), this, SLOT(on_siteButton_clicked()));
+    connect(helpDeskButton, SIGNAL(clicked(bool)), this, SLOT(on_helpDeskButton_clicked()));
+    connect(back_button, SIGNAL(pressed()), this, SLOT(on_backButton_clicked()));
 }
 
-void MainWindow::createActions()
+void CoolWindow::createActions()
 {
     newAction = new QAction(tr("Нове вікно"), this);
 //    newAction->setIcon(QIcon(":/images/images/new.png"));
@@ -86,68 +107,149 @@ void MainWindow::createActions()
              this, SLOT(about()));
 }
 
-void MainWindow::createMenus()
+void CoolWindow::createMenus()
 {
-    menu = menuBar()->addMenu(tr("&Файл"));
-    menu->addAction(newAction);
-    menu->addAction(printAction);
-    menu->addAction(closeAction);
-    menu->addSeparator();
-    menu->addAction(exitAction);
+//    menu = menuBar()->addMenu(tr("&Файл"));
+//    menu->addAction(newAction);
+//    menu->addAction(printAction);
+//    menu->addAction(closeAction);
+//    menu->addSeparator();
+//    menu->addAction(exitAction);
 
-    menu = menuBar()->addMenu(tr("&Допомога"));
-    menu->addAction(aboutQtAction);
+//    menu = menuBar()->addMenu(tr("&Допомога"));
+//    menu->addAction(aboutQtAction);
 
 }
 
-void MainWindow::fileNew()
+void CoolWindow::fileNew()
 {
-    (new MainWindow())->show();
+    (new CoolWindow())->show();
 }
 
-void MainWindow::print()
-{
-
-}
-
-void MainWindow::about()
+void CoolWindow::print()
 {
 
 }
 
-MainWindow::~MainWindow()
+void CoolWindow::about()
 {
-    delete ui;
+
 }
 
-void MainWindow::on_siteButton_clicked()
+CoolWindow::~CoolWindow()
 {
-    hide();
-    window->show();
+
 }
 
-void MainWindow::on_helpDeskButton_clicked()
+void CoolWindow::on_siteButton_clicked()
 {
+    if (window == nullptr)
+        createSiteWidget();
+
+    setCentralWidget(window);
+    centralWidget = nullptr;
+
+    connect(back_button, SIGNAL(pressed()), this, SLOT(on_backButton_clicked()));
+    disconnect(helpDeskButton, SIGNAL(clicked(bool)), this, SLOT(on_helpDeskButton_clicked()));
+}
+
+void CoolWindow::on_helpDeskButton_clicked()
+{
+    qDebug() << "Clicked";
     QDesktopServices::openUrl(QUrl("https://support.duxit.ua/issues"));
+
 }
 
-void MainWindow::on_clientButton_clicked()
+void CoolWindow::on_clientButton_clicked()
 {
 
 }
 
-void MainWindow::on_employeeButton_clicked()
+void CoolWindow::on_employeeButton_clicked()
 {
 
 }
 
-void MainWindow::on_knowledgeButton_clicked()
+void CoolWindow::on_knowledgeButton_clicked()
 {
 
 }
 
-void MainWindow::on_backButton_clicked()
+void CoolWindow::on_backButton_clicked()
 {
-    window->hide();
-    show();
+    if (centralWidget == nullptr)
+        createMainWidget();
+
+    setCentralWidget(centralWidget);
+    window = nullptr;
+
+    connect(siteButton, SIGNAL(clicked(bool)), this, SLOT(on_siteButton_clicked()));
+    connect(helpDeskButton, SIGNAL(clicked(bool)), this, SLOT(on_helpDeskButton_clicked()));
+}
+
+void CoolWindow::createMainWidget()
+{
+    centralWidget = new QWidget();
+    centralWidget->setObjectName(QStringLiteral("centralWidget"));
+
+    label_picture = new QLabel(centralWidget);
+    label_picture->setObjectName(QStringLiteral("label_picture"));
+    label_picture->setGeometry(QRect(10, 10, 461, 121));
+    label_picture->setScaledContents(true);
+
+    groupBox = new QGroupBox(centralWidget);
+    groupBox->setObjectName(QStringLiteral("groupBox"));
+    groupBox->setGeometry(QRect(10, 150, 461, 201));
+
+    gridLayout = new QGridLayout(groupBox);
+    gridLayout->setSpacing(6);
+    gridLayout->setContentsMargins(11, 11, 11, 11);
+    gridLayout->setObjectName(QStringLiteral("gridLayout"));
+
+    clientButton = new QPushButton("Клієнти");
+    clientButton->setObjectName(QStringLiteral("clientButton"));
+
+    gridLayout->addWidget(clientButton, 1, 0, 1, 1);
+
+    siteButton = new QPushButton("Сайти");
+    siteButton->setObjectName(QStringLiteral("siteButton"));
+
+    gridLayout->addWidget(siteButton, 3, 0, 1, 1);
+
+    knowledgeButton = new QPushButton("База знань");
+    knowledgeButton->setObjectName(QStringLiteral("knowledgeButton"));
+
+    gridLayout->addWidget(knowledgeButton, 3, 1, 1, 1);
+
+    employeeButton = new QPushButton("Співробітники");
+    employeeButton->setObjectName(QStringLiteral("employeeButton"));
+
+    gridLayout->addWidget(employeeButton, 1, 1, 1, 1);
+
+    helpDeskButton = new QPushButton("HelpDesk");
+    helpDeskButton->setObjectName(QStringLiteral("helpDeskButton"));
+
+    gridLayout->addWidget(helpDeskButton, 0, 0, 1, 2);
+}
+
+void CoolWindow::createSiteWidget()
+{
+    window = new QWidget();
+
+    siteGroupBox = new QGroupBox(window);
+    siteGroupBox->setGeometry(QRect(10, 150, 461, 201));
+
+    layout = new QGridLayout(siteGroupBox);
+    layout->setSpacing(6);
+    layout->setContentsMargins(11, 11, 11, 11);
+
+    management_button = new QPushButton("Управління телефонією");
+    server_button = new QPushButton("Управління поштовим сервером");
+    storage_button = new QPushButton("Файлове сховище");
+    back_button = new QPushButton("Назад");
+
+    layout->addWidget(management_button, 1, 0, 1, 1);
+    layout->addWidget(server_button, 3, 0, 1, 1);
+    layout->addWidget(storage_button, 3, 1, 1, 1);
+    layout->addWidget(back_button, 1, 1, 1, 1);
 }

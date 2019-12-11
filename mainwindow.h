@@ -3,24 +3,30 @@
 
 #include <QMainWindow>
 
-namespace Ui {
-class MainWindow;
-}
+//namespace Ui {
+//class MainWindow;
+//}
 
 class QPushButton;
 class QHBoxLayout;
+class QLabel;
+class QGroupBox;
+class QGridLayout;
 
-class MainWindow : public QMainWindow
+class CoolWindow : public QMainWindow
 {
     Q_OBJECT
 
 public:
-    explicit MainWindow(QWidget *parent = 0);
-    ~MainWindow();
+    explicit CoolWindow(QWidget *parent = 0);
+    ~CoolWindow();
 
 private:
     void createActions();
     void createMenus();
+
+    void createSiteWidget();
+    void createMainWidget();
 
 public slots:
     void fileNew();
@@ -35,7 +41,7 @@ public slots:
     void on_backButton_clicked();
 
 private:
-    QMenu       *menu;
+//    QMenu       *menu;
 
     QAction     *newAction;
     QAction     *printAction;
@@ -43,14 +49,29 @@ private:
     QAction     *exitAction;
     QAction     *aboutQtAction;
 
-    Ui::MainWindow *ui;
 
     QPushButton *back_button;
-    QWidget *window;
+    QPushButton *forward_button;
+    QWidget *window = nullptr;
     QPushButton *management_button;
     QPushButton *server_button;
     QPushButton *storage_button;
-    QHBoxLayout *layout;
+    QGridLayout *layout;
+    QGroupBox* siteGroupBox;
+
+
+
+    QWidget *centralWidget = nullptr;
+    QLabel *label_picture;
+    QGroupBox *groupBox;
+    QGridLayout *gridLayout;
+    QPushButton *clientButton;
+    QPushButton *siteButton;
+    QPushButton *knowledgeButton;
+    QPushButton *employeeButton;
+    QPushButton *helpDeskButton;
+    QMenuBar *menuBar;
+
 };
 
 #endif // MAINWINDOW_H
