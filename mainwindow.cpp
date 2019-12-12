@@ -15,6 +15,7 @@
 #include <QLayout>
 #include <QGroupBox>
 #include <QLabel>
+#include <QListWidget>
 
 #include "mainwindow.h"
 
@@ -53,6 +54,7 @@ CoolWindow::CoolWindow(QWidget *parent) :
 
     connect(siteButton, SIGNAL(clicked(bool)), this, SLOT(on_siteButton_clicked()));
     connect(helpDeskButton, SIGNAL(clicked(bool)), this, SLOT(on_helpDeskButton_clicked()));
+    connect(employeeButton, SIGNAL(clicked(bool)), this, SLOT(on_employeeButton_clicked()));
 
 //    connect(back_button, SIGNAL(pressed()), this, SLOT(on_backButton_clicked()));
 //    connect(management_button, SIGNAL(pressed()), this, SLOT(on_managementButton_clicked()));
@@ -134,13 +136,13 @@ CoolWindow::~CoolWindow()
 
 void CoolWindow::on_siteButton_clicked()
 {
-    if (window == nullptr)
+    if (siteWidget == nullptr)
         createSiteWidget();
 
-    setCentralWidget(window);
+    setCentralWidget(siteWidget);
     centralWidget = nullptr;
 
-    connect(back_button, SIGNAL(pressed()), this, SLOT(on_backButton_clicked()));
+    connect(backButton, SIGNAL(pressed()), this, SLOT(on_backButton_clicked()));
     disconnect(helpDeskButton, SIGNAL(clicked(bool)), this, SLOT(on_helpDeskButton_clicked()));
 }
 
@@ -158,6 +160,52 @@ void CoolWindow::on_clientButton_clicked()
 
 void CoolWindow::on_employeeButton_clicked()
 {
+//    employeeListWidget = new QListWidget();
+
+//    employeeListWidget->addItem("Sanya sunok 1");
+//    employeeListWidget->addItem("Sanya sunok 2");
+//    employeeListWidget->addItem("Sanya sunok 3");
+
+//    employeeListWidget->currentItem()->
+
+//    setCentralWidget(employeeListWidget);
+
+    qDebug() << "CoolWindow::on_employeeButton_clicked()";
+    employeeWidget = new QWidget();
+
+    employeeGroupBox = new QGroupBox(employeeWidget);
+    employeeGroupBox->setGeometry(QRect(10, 150, 461, 201));
+
+    employeeGridLayout = new QGridLayout(employeeWidget);
+    employeeGridLayout->setSpacing(6);
+    employeeGridLayout->setContentsMargins(11, 11, 11, 11);
+
+    sashaButton = new QPushButton("Саша Кравченко");
+//    managementButton = new QPushButton("Управління телефонією");
+//    serverButton = new QPushButton("Управління поштовим сервером");
+//    antivirusButton = new QPushButton("Управління антивірсуною системою");
+//    storageButton = new QPushButton("Файлове сховище");
+//    backButton = new QPushButton("Назад");
+    backButton = new QPushButton("Назад");
+
+    employeeGridLayout->addWidget(sashaButton, 1, 0, 1, 1);
+    employeeGridLayout->addWidget(backButton, 2, 0, 1, 1);
+//    siteGridLayout->addWidget(serverButton, 0, 0, 1, 1);
+//    siteGridLayout->addWidget(storageButton, 0, 1, 1, 1);
+//    siteGridLayout->addWidget(antivirusButton, 1, 1, 1, 1);
+//    siteGridLayout->addWidget(backButton, 3, 0, 1, 2);
+
+    setCentralWidget(employeeWidget);
+    centralWidget = siteWidget = nullptr;
+
+    connect(sashaButton, SIGNAL(pressed()), this, SLOT(on_sashaButton_clicked()));
+    connect(backButton, SIGNAL(pressed()), this, SLOT(on_backButton_clicked()));
+
+//    connect(backButton, SIGNAL(pressed()), this, SLOT(on_backButton_clicked()));
+//    connect(managementButton, SIGNAL(pressed()), this, SLOT(on_managementButton_clicked()));
+//    connect(serverButton, SIGNAL(pressed()), this, SLOT(on_serverButton_clicked()));
+//    connect(storageButton, SIGNAL(pressed()), this, SLOT(on_storageButton_clicked()));
+//    connect(antivirusButton, SIGNAL(pressed()), this, SLOT(on_antivirusButton_clicked()));
 
 }
 
@@ -168,14 +216,16 @@ void CoolWindow::on_knowledgeButton_clicked()
 
 void CoolWindow::on_backButton_clicked()
 {
+    qDebug() << "on_backButton_clicked()";
     if (centralWidget == nullptr)
         createMainWidget();
 
     setCentralWidget(centralWidget);
-    window = nullptr;
+    siteWidget = nullptr;
 
     connect(siteButton, SIGNAL(clicked(bool)), this, SLOT(on_siteButton_clicked()));
     connect(helpDeskButton, SIGNAL(clicked(bool)), this, SLOT(on_helpDeskButton_clicked()));
+    connect(employeeButton, SIGNAL(clicked(bool)), this, SLOT(on_employeeButton_clicked()));
 }
 
 void CoolWindow::on_storageButton_clicked()
@@ -185,16 +235,19 @@ void CoolWindow::on_storageButton_clicked()
 
 void CoolWindow::on_managementButton_clicked()
 {
+    qDebug() << "on_managementButton_clicked()";
     QDesktopServices::openUrl(QUrl("https://dx.sip.duxit.ua:3010/#!/login"));
 }
 
 void CoolWindow::on_serverButton_clicked()
 {
+    qDebug() << "on_serverButton_clicked()";
     QDesktopServices::openUrl(QUrl("https://panel.online365.com.ua:8080/index.php"));
 }
 
 void CoolWindow::on_antivirusButton_clicked()
 {
+    qDebug() << "on_antivirusButton_clicked()";
     QDesktopServices::openUrl(QUrl("https://era.online365.com.ua/era/webconsole/"));
 }
 
@@ -203,82 +256,91 @@ void CoolWindow::createMainWidget()
     centralWidget = new QWidget();
     centralWidget->setObjectName(QStringLiteral("centralWidget"));
 
-    label_picture = new QLabel(centralWidget);
-    label_picture->setObjectName(QStringLiteral("label_picture"));
-    label_picture->setGeometry(QRect(10, 10, 461, 121));
-    label_picture->setScaledContents(true);
+    centralLabelPicture = new QLabel(centralWidget);
+    centralLabelPicture->setObjectName(QStringLiteral("label_picture"));
+    centralLabelPicture->setGeometry(QRect(10, 10, 461, 121));
+    centralLabelPicture->setScaledContents(true);
 
-    groupBox = new QGroupBox(centralWidget);
-    groupBox->setObjectName(QStringLiteral("groupBox"));
-    groupBox->setGeometry(QRect(10, 150, 461, 201));
+    centralGroupBox = new QGroupBox(centralWidget);
+    centralGroupBox->setObjectName(QStringLiteral("groupBox"));
+    centralGroupBox->setGeometry(QRect(10, 150, 461, 201));
 
-    gridLayout = new QGridLayout(groupBox);
-    gridLayout->setSpacing(6);
-    gridLayout->setContentsMargins(11, 11, 11, 11);
-    gridLayout->setObjectName(QStringLiteral("gridLayout"));
+    centralGridLayout = new QGridLayout(centralGroupBox);
+    centralGridLayout->setSpacing(6);
+    centralGridLayout->setContentsMargins(11, 11, 11, 11);
+    centralGridLayout->setObjectName(QStringLiteral("gridLayout"));
 
     clientButton = new QPushButton("Клієнти");
     clientButton->setObjectName(QStringLiteral("clientButton"));
 
-    gridLayout->addWidget(clientButton, 1, 0, 1, 1);
+    centralGridLayout->addWidget(clientButton, 1, 0, 1, 1);
 
-    siteButton = new QPushButton("Сайти");
+    siteButton = new QPushButton("Наші ресурси");
     siteButton->setObjectName(QStringLiteral("siteButton"));
 
-    gridLayout->addWidget(siteButton, 3, 0, 1, 1);
+    centralGridLayout->addWidget(siteButton, 3, 0, 1, 1);
 
     knowledgeButton = new QPushButton("База знань");
     knowledgeButton->setObjectName(QStringLiteral("knowledgeButton"));
 
-    gridLayout->addWidget(knowledgeButton, 3, 1, 1, 1);
+    centralGridLayout->addWidget(knowledgeButton, 3, 1, 1, 1);
 
     employeeButton = new QPushButton("Співробітники");
     employeeButton->setObjectName(QStringLiteral("employeeButton"));
 
-    gridLayout->addWidget(employeeButton, 1, 1, 1, 1);
+    centralGridLayout->addWidget(employeeButton, 1, 1, 1, 1);
 
     helpDeskButton = new QPushButton("HelpDesk");
     helpDeskButton->setObjectName(QStringLiteral("helpDeskButton"));
 
 
-    label_picture = new QLabel(centralWidget);
-    label_picture->setObjectName(QStringLiteral("label_picture"));
-    label_picture->setGeometry(QRect(10, 10, 461, 121));
-    label_picture->setScaledContents(true);
+    centralLabelPicture = new QLabel(centralWidget);
+    centralLabelPicture->setObjectName(QStringLiteral("label_picture"));
+    centralLabelPicture->setGeometry(QRect(10, 10, 461, 121));
+    centralLabelPicture->setScaledContents(true);
 
     QPixmap picture("C:/Users/pasha/Downloads/Duxit FB picture.png");
-    label_picture->setPixmap(picture);
+    centralLabelPicture->setPixmap(picture);
 
 
-    gridLayout->addWidget(helpDeskButton, 0, 0, 1, 2);
+    centralGridLayout->addWidget(helpDeskButton, 0, 0, 1, 2);
 }
 
 void CoolWindow::createSiteWidget()
 {
-    window = new QWidget();
+    siteWidget = new QWidget();
 
-    siteGroupBox = new QGroupBox(window);
+    siteGroupBox = new QGroupBox(siteWidget);
     siteGroupBox->setGeometry(QRect(10, 150, 461, 201));
 
-    layout = new QGridLayout(siteGroupBox);
-    layout->setSpacing(6);
-    layout->setContentsMargins(11, 11, 11, 11);
+    siteGridLayout = new QGridLayout(siteGroupBox);
+    siteGridLayout->setSpacing(6);
+    siteGridLayout->setContentsMargins(11, 11, 11, 11);
 
-    management_button = new QPushButton("Управління телефонією");
-    server_button = new QPushButton("Управління поштовим сервером");
-    antivirus_button = new QPushButton("Управління антивірсуною системою");
-    storage_button = new QPushButton("Файлове сховище");
-    back_button = new QPushButton("Назад");
+    managementButton = new QPushButton("Управління телефонією");
+    serverButton = new QPushButton("Управління поштовим сервером");
+    antivirusButton = new QPushButton("Управління антивірсуною системою");
+    storageButton = new QPushButton("Файлове сховище");
+    backButton = new QPushButton("Назад");
 
-    layout->addWidget(management_button, 1, 0, 1, 1);
-    layout->addWidget(server_button, 0, 0, 1, 1);
-    layout->addWidget(storage_button, 0, 1, 1, 1);
-    layout->addWidget(antivirus_button, 1, 1, 1, 1);
-    layout->addWidget(back_button, 3, 0, 1, 2);
+    siteGridLayout->addWidget(managementButton, 1, 0, 1, 1);
+    siteGridLayout->addWidget(serverButton, 0, 0, 1, 1);
+    siteGridLayout->addWidget(storageButton, 0, 1, 1, 1);
+    siteGridLayout->addWidget(antivirusButton, 1, 1, 1, 1);
+    siteGridLayout->addWidget(backButton, 3, 0, 1, 2);
 
-    connect(back_button, SIGNAL(pressed()), this, SLOT(on_backButton_clicked()));
-    connect(management_button, SIGNAL(pressed()), this, SLOT(on_managementButton_clicked()));
-    connect(server_button, SIGNAL(pressed()), this, SLOT(on_serverButton_clicked()));
-    connect(storage_button, SIGNAL(pressed()), this, SLOT(on_storageButton_clicked()));
-    connect(antivirus_button, SIGNAL(pressed()), this, SLOT(on_antivirusButton_clicked()));
+    connect(backButton, SIGNAL(pressed()), this, SLOT(on_backButton_clicked()));
+    connect(managementButton, SIGNAL(pressed()), this, SLOT(on_managementButton_clicked()));
+    connect(serverButton, SIGNAL(pressed()), this, SLOT(on_serverButton_clicked()));
+    connect(storageButton, SIGNAL(pressed()), this, SLOT(on_storageButton_clicked()));
+    connect(antivirusButton, SIGNAL(pressed()), this, SLOT(on_antivirusButton_clicked()));
+}
+
+
+void CoolWindow::on_sashaButton_clicked()
+{
+    qDebug() << "on_sashaButton_clicked()";
+    sashaKranchenko = new EmployeeSashaKravchenko();
+
+    sashaKranchenko->show();
 }

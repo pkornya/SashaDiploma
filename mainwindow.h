@@ -7,11 +7,14 @@
 //class MainWindow;
 //}
 
+#include <employeesashakravchenko.h>
+
 class QPushButton;
 class QHBoxLayout;
 class QLabel;
 class QGroupBox;
 class QGridLayout;
+class QListWidget;
 
 class CoolWindow : public QMainWindow
 {
@@ -45,6 +48,8 @@ public slots:
     void on_serverButton_clicked();
     void on_antivirusButton_clicked();
 
+    void on_sashaButton_clicked();
+
 private:
     QMenu       *menu;
 
@@ -54,29 +59,33 @@ private:
     QAction     *exitAction;
     QAction     *aboutQtAction;
 
+    QWidget     *siteWidget = nullptr;
+    QPushButton *backButton;
+    QPushButton *managementButton;
+    QPushButton *serverButton;
+    QPushButton *storageButton;
+    QPushButton *antivirusButton;
+    QGridLayout *siteGridLayout;
+    QGroupBox   *siteGroupBox;
 
-    QWidget     *window = nullptr;
-
-    QPushButton *back_button;
-    QPushButton *management_button;
-    QPushButton *server_button;
-    QPushButton *storage_button;
-    QPushButton *antivirus_button;
-
-    QGridLayout *layout;
-    QGroupBox* siteGroupBox;
-
-
-
-    QWidget *centralWidget = nullptr;
-    QLabel *label_picture;
-    QGroupBox *groupBox;
-    QGridLayout *gridLayout;
+    QWidget     *centralWidget = nullptr;
     QPushButton *clientButton;
     QPushButton *siteButton;
     QPushButton *knowledgeButton;
     QPushButton *employeeButton;
     QPushButton *helpDeskButton;
+    QGroupBox   *centralGroupBox;
+    QGridLayout *centralGridLayout;
+    QLabel      *centralLabelPicture;
+
+    QWidget     *employeeWidget = nullptr;
+    QGroupBox   *employeeGroupBox;
+    QGridLayout *employeeGridLayout;
+    QListWidget *employeeListWidget = nullptr;
+    QPushButton *sashaButton;
+
+
+    EmployeeSashaKravchenko* sashaKranchenko;
 };
 
 #endif // MAINWINDOW_H
