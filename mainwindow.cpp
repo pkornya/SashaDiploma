@@ -363,6 +363,8 @@ void CoolWindow::on_FTPButton_clicked()
     FTPGridLayout->addWidget(fakeButton, 0, 0, 1, 1);
 
     setCentralWidget(FTPWidget);
+
+    connect(VPNButton, SIGNAL(clicked(bool)), this, SLOT(on_VPNButton_clicked()));
 }
 
 void CoolWindow::createKnowledgeWidget()
@@ -391,4 +393,10 @@ void CoolWindow::createKnowledgeWidget()
     knowledgeGridLayout->addWidget(spyceButton, 2, 0, 1, 1);
     knowledgeGridLayout->addWidget(backButton, 3, 0, 1, 2);
 
+}
+
+void CoolWindow::on_VPNButton_clicked()
+{
+    vpnForWindows = new VpnForWindows();
+    vpnForWindows->show();
 }

@@ -22,7 +22,7 @@
       </font>
      </property>
      <property name="currentIndex">
-      <number>9</number>
+      <number>0</number>
      </property>
      <widget class="QWidget" name="tab">
       <attribute name="title">
@@ -31,10 +31,10 @@
       <widget class="QWidget" name="">
        <property name="geometry">
         <rect>
-         <x>0</x>
-         <y>0</y>
-         <width>602</width>
-         <height>521</height>
+         <x>1</x>
+         <y>1</y>
+         <width>502</width>
+         <height>440</height>
         </rect>
        </property>
        <layout class="QVBoxLayout" name="verticalLayout">
@@ -58,6 +58,9 @@
           <property name="text">
            <string>1) Заходимо до панелі управління</string>
           </property>
+          <property name="readOnly">
+           <bool>true</bool>
+          </property>
          </widget>
         </item>
        </layout>
@@ -67,7 +70,7 @@
       <attribute name="title">
        <string>Крок 2</string>
       </attribute>
-      <widget class="QWidget" name="">
+      <widget class="QWidget" name="layoutWidget">
        <property name="geometry">
         <rect>
          <x>0</x>
@@ -97,6 +100,9 @@
           <property name="text">
            <string>2) Знаходимо там центр управління мережею та загальним доступом</string>
           </property>
+          <property name="readOnly">
+           <bool>true</bool>
+          </property>
          </widget>
         </item>
        </layout>
@@ -106,7 +112,7 @@
       <attribute name="title">
        <string notr="true">Крок 3</string>
       </attribute>
-      <widget class="QWidget" name="">
+      <widget class="QWidget" name="layoutWidget">
        <property name="geometry">
         <rect>
          <x>0</x>
@@ -136,6 +142,9 @@
           <property name="text">
            <string>3) Натискаємо на створення та налаштування нового підключення до мережі</string>
           </property>
+          <property name="readOnly">
+           <bool>true</bool>
+          </property>
          </widget>
         </item>
        </layout>
@@ -145,7 +154,7 @@
       <attribute name="title">
        <string notr="true">Крок 4</string>
       </attribute>
-      <widget class="QWidget" name="">
+      <widget class="QWidget" name="layoutWidget">
        <property name="geometry">
         <rect>
          <x>0</x>
@@ -175,6 +184,9 @@
           <property name="text">
            <string>4) Обираємо підключення до робочого місця</string>
           </property>
+          <property name="readOnly">
+           <bool>true</bool>
+          </property>
          </widget>
         </item>
        </layout>
@@ -184,7 +196,7 @@
       <attribute name="title">
        <string>Крок 5</string>
       </attribute>
-      <widget class="QWidget" name="">
+      <widget class="QWidget" name="layoutWidget">
        <property name="geometry">
         <rect>
          <x>0</x>
@@ -208,11 +220,14 @@
          <widget class="QLineEdit" name="step_5_lineEdit">
           <property name="font">
            <font>
-            <pointsize>12</pointsize>
+            <pointsize>11</pointsize>
            </font>
           </property>
           <property name="text">
            <string>5) Натискаємо використовувати моє підключення до Інтернет (VPN)</string>
+          </property>
+          <property name="readOnly">
+           <bool>true</bool>
           </property>
          </widget>
         </item>
@@ -223,7 +238,7 @@
       <attribute name="title">
        <string>Крок 6</string>
       </attribute>
-      <widget class="QWidget" name="">
+      <widget class="QWidget" name="layoutWidget">
        <property name="geometry">
         <rect>
          <x>0</x>
@@ -253,6 +268,9 @@
           <property name="text">
            <string>6) Адресу та назву вводимо як на зображенні</string>
           </property>
+          <property name="readOnly">
+           <bool>true</bool>
+          </property>
          </widget>
         </item>
        </layout>
@@ -262,7 +280,7 @@
       <attribute name="title">
        <string>Крок 7</string>
       </attribute>
-      <widget class="QWidget" name="">
+      <widget class="QWidget" name="layoutWidget">
        <property name="geometry">
         <rect>
          <x>0</x>
@@ -292,6 +310,9 @@
           <property name="text">
            <string>7) Далі заходимо в зміну параметрів адаптеру</string>
           </property>
+          <property name="readOnly">
+           <bool>true</bool>
+          </property>
          </widget>
         </item>
        </layout>
@@ -301,7 +322,7 @@
       <attribute name="title">
        <string>Крок 8</string>
       </attribute>
-      <widget class="QWidget" name="">
+      <widget class="QWidget" name="layoutWidget">
        <property name="geometry">
         <rect>
          <x>0</x>
@@ -331,6 +352,9 @@
           <property name="text">
            <string>8) Обираємо ваше нове підключення та натискаємо правою кнопкою миші, знаходимо властивості</string>
           </property>
+          <property name="readOnly">
+           <bool>true</bool>
+          </property>
          </widget>
         </item>
        </layout>
@@ -340,7 +364,7 @@
       <attribute name="title">
        <string>Крок 9</string>
       </attribute>
-      <widget class="QWidget" name="">
+      <widget class="QWidget" name="layoutWidget">
        <property name="geometry">
         <rect>
          <x>0</x>
@@ -370,6 +394,9 @@
           <property name="text">
            <string>9) Далі переходимо на вкладку безпека, налаштовуємо згідно зображенню</string>
           </property>
+          <property name="readOnly">
+           <bool>true</bool>
+          </property>
          </widget>
         </item>
        </layout>
@@ -379,7 +406,7 @@
       <attribute name="title">
        <string>Крок 10</string>
       </attribute>
-      <widget class="QWidget" name="">
+      <widget class="QWidget" name="layoutWidget">
        <property name="geometry">
         <rect>
          <x>20</x>
@@ -408,6 +435,9 @@
           </property>
           <property name="text">
            <string>10) Залишилося підключитися використовуючи логін та пароль, який вам нададуть</string>
+          </property>
+          <property name="readOnly">
+           <bool>true</bool>
           </property>
          </widget>
         </item>

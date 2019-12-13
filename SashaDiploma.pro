@@ -27,10 +27,12 @@ SOURCES += main.cpp\
         mainwindow.cpp
 
 HEADERS  += mainwindow.h \
-    employeesashakravchenko.h
+    employeesashakravchenko.h \
+    vpnforwindows.h
 
 FORMS    += mainwindow.ui \
-    employeesashakravchenko.ui
+    employeesashakravchenko.ui \
+    vpnforwindows.ui
 
 RESOURCES += \
     resource.qrc

@@ -8,6 +8,7 @@
 //}
 
 #include <employeesashakravchenko.h>
+#include <vpnforwindows.h>
 
 class QPushButton;
 class QHBoxLayout;
@@ -52,6 +53,7 @@ public slots:
     void on_sashaButton_clicked();
 
     void on_FTPButton_clicked();
+    void on_VPNButton_clicked();
 
 private:
     QMenu       *menu;
@@ -120,6 +122,8 @@ private:
 
     QPushButton *VPNButton;
     QPushButton *fakeButton;
+
+    VpnForWindows* vpnForWindows;
 
 
 };
