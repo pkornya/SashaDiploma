@@ -1,5 +1,7 @@
 <RCC>
-    <qresource prefix="/images">
-        <file>C:/Users/pasha/Downloads/Telegram Desktop/image_2019-12-12_23-19-46.png</file>
+    <qresource prefix="/resource">
+        <file>images/Duxit FB picture_1.png</file>
+        <file>images/image_2019-12-12_23-19-46.png</file>
+        <file>images/systems-administrator-job-description.jpg</file>
     </qresource>
 </RCC>

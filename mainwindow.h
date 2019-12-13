@@ -30,6 +30,7 @@ private:
 
     void createSiteWidget();
     void createMainWidget();
+    void createKnowledgeWidget();
 
 public slots:
     void fileNew();
@@ -49,6 +50,8 @@ public slots:
     void on_antivirusButton_clicked();
 
     void on_sashaButton_clicked();
+
+    void on_FTPButton_clicked();
 
 private:
     QMenu       *menu;
@@ -82,10 +85,43 @@ private:
     QGroupBox   *employeeGroupBox;
     QGridLayout *employeeGridLayout;
     QListWidget *employeeListWidget = nullptr;
-    QPushButton *sashaButton;
 
+    QPushButton *sashaKravchenkoButton;
+    QPushButton *sashaKavraskyyButton;
+    QPushButton *sashaArtemchukButton;
+    QPushButton *igorGorbButton;
+    QPushButton *sevastianKovalenkoButton;
+    QPushButton *nataliaRiabaButton;
+    QPushButton *vladislavSerdechnyyButton;
+    QPushButton *evgeniaTygauKravchenkoButton;
 
     EmployeeSashaKravchenko* sashaKranchenko;
+
+
+    QWidget     *knowledgeWidget = nullptr;
+    QGroupBox   *knowledgeGroupBox;
+    QGridLayout *knowledgeGridLayout;
+
+    QPushButton *FTPButton;
+    QPushButton *globalButton;
+    QPushButton *titanButton;
+    QPushButton *aeroButton;
+    QPushButton *spyceButton;
+
+//    FTP
+//    Global
+//    Titan
+//    Aero
+//    Spyce
+
+    QWidget     *FTPWidget = nullptr;
+    QGroupBox   *FTPGroupBox;
+    QGridLayout *FTPGridLayout;
+
+    QPushButton *VPNButton;
+    QPushButton *fakeButton;
+
+
 };
 
 #endif // MAINWINDOW_H

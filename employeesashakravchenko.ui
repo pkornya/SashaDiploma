@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Dialog</string>
+   <string>Олександр Кравченко</string>
   </property>
   <widget class="QLabel" name="label">
    <property name="geometry">
@@ -29,7 +29,7 @@
     <pixmap>C:/Users/pasha/Downloads/Telegram Desktop/image_2019-12-12_23-19-46.png</pixmap>
    </property>
   </widget>
-  <widget class="QWidget" name="">
+  <widget class="QWidget" name="layoutWidget">
    <property name="geometry">
     <rect>
      <x>20</x>
@@ -149,18 +149,8 @@
     </item>
    </layout>
   </widget>
+  <zorder>layoutWidget</zorder>
   <zorder>label</zorder>
-  <zorder>nameLabel</zorder>
-  <zorder>nameLineEdit</zorder>
-  <zorder>positionLabel</zorder>
-  <zorder>positionLineEdit</zorder>
-  <zorder>emailLabel</zorder>
-  <zorder>emailLineEdit</zorder>
-  <zorder>phoneLabel</zorder>
-  <zorder>phoneLineEdit</zorder>
-  <zorder></zorder>
-  <zorder></zorder>
-  <zorder>positionLabel</zorder>
  </widget>
  <resources/>
  <connections/>

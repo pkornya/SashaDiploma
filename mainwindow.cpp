@@ -24,6 +24,7 @@ CoolWindow::CoolWindow(QWidget *parent) :
 //    ui(new Ui::MainWindow)
 {
 //    ui->setupUi(this);
+    setWindowTitle("Duxit Group");
     setAttribute(Qt::WA_DeleteOnClose);
 
     const QRect rect(500,500,500,500);
@@ -41,11 +42,12 @@ CoolWindow::CoolWindow(QWidget *parent) :
 //        MainWindow->setObjectName(QStringLiteral("MainWindow"));
     resize(474, 384);
     QIcon icon;
-    icon.addFile(QStringLiteral("C:/Users/pasha/Downloads/systems-administrator-job-description.jpg"), QSize(), QIcon::Normal, QIcon::Off);
+    icon.addFile(QStringLiteral(":/resource/images/systems-administrator-job-description.jpg"), QSize(), QIcon::Normal, QIcon::Off);
     setWindowIcon(icon);
 
     createMainWidget();
     createSiteWidget();
+    createKnowledgeWidget();
 
     setCentralWidget(centralWidget);
 
@@ -55,6 +57,8 @@ CoolWindow::CoolWindow(QWidget *parent) :
     connect(siteButton, SIGNAL(clicked(bool)), this, SLOT(on_siteButton_clicked()));
     connect(helpDeskButton, SIGNAL(clicked(bool)), this, SLOT(on_helpDeskButton_clicked()));
     connect(employeeButton, SIGNAL(clicked(bool)), this, SLOT(on_employeeButton_clicked()));
+    connect(knowledgeButton, SIGNAL(clicked(bool)), this, SLOT(on_knowledgeButton_clicked()));
+    connect(FTPButton, SIGNAL(clicked(bool)), this, SLOT(on_FTPButton_clicked()));
 
 //    connect(back_button, SIGNAL(pressed()), this, SLOT(on_backButton_clicked()));
 //    connect(management_button, SIGNAL(pressed()), this, SLOT(on_managementButton_clicked()));
@@ -94,7 +98,7 @@ void CoolWindow::createActions()
             qApp, SLOT(closeAllWindows()));
 
     aboutQtAction = new QAction( tr("Про програму"), this );
-    aboutQtAction->setIcon(QIcon(":/images/images/about.png"));
+    aboutQtAction->setIcon(QIcon(":/resource/images/image_2019-12-12_23-19-46.png"));
     aboutQtAction->setStatusTip( tr("Інформація про програму") );
     connect(aboutQtAction, SIGNAL(triggered()),
              this, SLOT(about()));
@@ -160,57 +164,52 @@ void CoolWindow::on_clientButton_clicked()
 
 void CoolWindow::on_employeeButton_clicked()
 {
-//    employeeListWidget = new QListWidget();
-
-//    employeeListWidget->addItem("Sanya sunok 1");
-//    employeeListWidget->addItem("Sanya sunok 2");
-//    employeeListWidget->addItem("Sanya sunok 3");
-
-//    employeeListWidget->currentItem()->
-
-//    setCentralWidget(employeeListWidget);
-
     qDebug() << "CoolWindow::on_employeeButton_clicked()";
     employeeWidget = new QWidget();
 
     employeeGroupBox = new QGroupBox(employeeWidget);
-    employeeGroupBox->setGeometry(QRect(10, 150, 461, 201));
+    employeeGroupBox->setGeometry(QRect(10, 10, 455, 335));
 
     employeeGridLayout = new QGridLayout(employeeWidget);
     employeeGridLayout->setSpacing(6);
     employeeGridLayout->setContentsMargins(11, 11, 11, 11);
 
-    sashaButton = new QPushButton("Саша Кравченко");
-//    managementButton = new QPushButton("Управління телефонією");
-//    serverButton = new QPushButton("Управління поштовим сервером");
-//    antivirusButton = new QPushButton("Управління антивірсуною системою");
-//    storageButton = new QPushButton("Файлове сховище");
-//    backButton = new QPushButton("Назад");
+    sashaKravchenkoButton = new QPushButton("Саша Кравченко");
+    sashaKavraskyyButton = new QPushButton("Кавраський Олександр");
+    sashaArtemchukButton = new QPushButton("Артемчук Олександр");
+    igorGorbButton = new QPushButton("Горб Ігор");
+    sevastianKovalenkoButton = new QPushButton("Коваленко Севастьян");
+    nataliaRiabaButton = new QPushButton("Ряба Наталія");
+    vladislavSerdechnyyButton = new QPushButton("Сердечний Владислав");
+    evgeniaTygauKravchenkoButton = new QPushButton("Тугай Євгенія");
+
     backButton = new QPushButton("Назад");
 
-    employeeGridLayout->addWidget(sashaButton, 1, 0, 1, 1);
-    employeeGridLayout->addWidget(backButton, 2, 0, 1, 1);
-//    siteGridLayout->addWidget(serverButton, 0, 0, 1, 1);
-//    siteGridLayout->addWidget(storageButton, 0, 1, 1, 1);
-//    siteGridLayout->addWidget(antivirusButton, 1, 1, 1, 1);
-//    siteGridLayout->addWidget(backButton, 3, 0, 1, 2);
+    employeeGridLayout->addWidget(sashaKravchenkoButton, 0, 0, 1, 1);
+    employeeGridLayout->addWidget(sashaKavraskyyButton, 0, 1, 1, 1);
+    employeeGridLayout->addWidget(sashaArtemchukButton, 1, 0, 1, 1);
+    employeeGridLayout->addWidget(igorGorbButton, 1, 1, 1, 1);
+    employeeGridLayout->addWidget(sevastianKovalenkoButton, 2, 0, 1, 1);
+    employeeGridLayout->addWidget(nataliaRiabaButton, 2, 1, 1, 1);
+    employeeGridLayout->addWidget(vladislavSerdechnyyButton, 3, 0, 1, 1);
+    employeeGridLayout->addWidget(evgeniaTygauKravchenkoButton, 3, 1, 1, 1);
+    employeeGridLayout->addWidget(backButton, 4, 0, 1, 2);
 
     setCentralWidget(employeeWidget);
     centralWidget = siteWidget = nullptr;
 
-    connect(sashaButton, SIGNAL(pressed()), this, SLOT(on_sashaButton_clicked()));
+    connect(sashaKravchenkoButton, SIGNAL(pressed()), this, SLOT(on_sashaButton_clicked()));
     connect(backButton, SIGNAL(pressed()), this, SLOT(on_backButton_clicked()));
-
-//    connect(backButton, SIGNAL(pressed()), this, SLOT(on_backButton_clicked()));
-//    connect(managementButton, SIGNAL(pressed()), this, SLOT(on_managementButton_clicked()));
-//    connect(serverButton, SIGNAL(pressed()), this, SLOT(on_serverButton_clicked()));
-//    connect(storageButton, SIGNAL(pressed()), this, SLOT(on_storageButton_clicked()));
-//    connect(antivirusButton, SIGNAL(pressed()), this, SLOT(on_antivirusButton_clicked()));
-
 }
 
 void CoolWindow::on_knowledgeButton_clicked()
 {
+    qDebug() << "CoolWindow::on_knowledgeButton_clicked()";
+    setCentralWidget(knowledgeWidget);
+    centralWidget = siteWidget = nullptr;
+
+//    connect(sashaKravchenkoButton, SIGNAL(pressed()), this, SLOT(on_sashaButton_clicked()));
+    connect(backButton, SIGNAL(pressed()), this, SLOT(on_backButton_clicked()));
 
 }
 
@@ -226,6 +225,7 @@ void CoolWindow::on_backButton_clicked()
     connect(siteButton, SIGNAL(clicked(bool)), this, SLOT(on_siteButton_clicked()));
     connect(helpDeskButton, SIGNAL(clicked(bool)), this, SLOT(on_helpDeskButton_clicked()));
     connect(employeeButton, SIGNAL(clicked(bool)), this, SLOT(on_employeeButton_clicked()));
+    connect(knowledgeButton, SIGNAL(clicked(bool)), this, SLOT(on_knowledgeButton_clicked()));
 }
 
 void CoolWindow::on_storageButton_clicked()
@@ -296,10 +296,10 @@ void CoolWindow::createMainWidget()
 
     centralLabelPicture = new QLabel(centralWidget);
     centralLabelPicture->setObjectName(QStringLiteral("label_picture"));
-    centralLabelPicture->setGeometry(QRect(10, 10, 461, 121));
+    centralLabelPicture->setGeometry(QRect(10, 10, 455, 155));
     centralLabelPicture->setScaledContents(true);
 
-    QPixmap picture("C:/Users/pasha/Downloads/Duxit FB picture.png");
+    QPixmap picture(":/resource/images/Duxit FB picture_1.png");
     centralLabelPicture->setPixmap(picture);
 
 
@@ -311,7 +311,7 @@ void CoolWindow::createSiteWidget()
     siteWidget = new QWidget();
 
     siteGroupBox = new QGroupBox(siteWidget);
-    siteGroupBox->setGeometry(QRect(10, 150, 461, 201));
+    siteGroupBox->setGeometry(QRect(10, 150, 440, 201));
 
     siteGridLayout = new QGridLayout(siteGroupBox);
     siteGridLayout->setSpacing(6);
@@ -343,4 +343,52 @@ void CoolWindow::on_sashaButton_clicked()
     sashaKranchenko = new EmployeeSashaKravchenko();
 
     sashaKranchenko->show();
+}
+
+void CoolWindow::on_FTPButton_clicked()
+{
+    FTPWidget = new QWidget();
+
+    FTPGroupBox = new QGroupBox(FTPWidget);
+    FTPGroupBox->setGeometry(QRect(10, 150, 440, 201));
+
+    FTPGridLayout = new QGridLayout(FTPGroupBox);
+    FTPGridLayout->setSpacing(6);
+    FTPGridLayout->setContentsMargins(11, 11, 11, 11);
+
+    VPNButton = new QPushButton("Налаштування VPN для Windows");
+    fakeButton = new QPushButton("Додавання мережевих дисків");
+
+    FTPGridLayout->addWidget(VPNButton, 1, 0, 1, 1);
+    FTPGridLayout->addWidget(fakeButton, 0, 0, 1, 1);
+
+    setCentralWidget(FTPWidget);
+}
+
+void CoolWindow::createKnowledgeWidget()
+{
+    knowledgeWidget = new QWidget();
+
+    knowledgeGroupBox = new QGroupBox(knowledgeWidget);
+    knowledgeGroupBox->setGeometry(QRect(10, 10, 455, 335));
+
+    knowledgeGridLayout = new QGridLayout(knowledgeWidget);
+    knowledgeGridLayout->setSpacing(6);
+    knowledgeGridLayout->setContentsMargins(11, 11, 11, 11);
+
+    FTPButton = new QPushButton("FTP");
+    globalButton = new QPushButton("Global");
+    titanButton = new QPushButton("Titan");
+    aeroButton = new QPushButton("Aero");
+    spyceButton = new QPushButton("Spyce");
+
+    backButton = new QPushButton("Назад");
+
+    knowledgeGridLayout->addWidget(FTPButton, 0, 0, 1, 1);
+    knowledgeGridLayout->addWidget(globalButton, 0, 1, 1, 1);
+    knowledgeGridLayout->addWidget(titanButton, 1, 0, 1, 1);
+    knowledgeGridLayout->addWidget(aeroButton, 1, 1, 1, 1);
+    knowledgeGridLayout->addWidget(spyceButton, 2, 0, 1, 1);
+    knowledgeGridLayout->addWidget(backButton, 3, 0, 1, 2);
+
 }
