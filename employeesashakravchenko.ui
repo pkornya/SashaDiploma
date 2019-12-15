@@ -38,7 +38,7 @@
      <height>181</height>
     </rect>
    </property>
-   <layout class="QVBoxLayout" name="verticalLayout">
+   <layout class="QVBoxLayout" name="employeeSashaKravchenkoVerticalLayout">
     <item>
      <layout class="QHBoxLayout" name="nameHorizontalLayout">
       <item>
