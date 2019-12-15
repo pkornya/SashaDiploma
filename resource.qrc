@@ -10,5 +10,21 @@
         <file>images/exit.png</file>
         <file>images/new.png</file>
         <file>images/print.png</file>
+        <file>images/content_1.png</file>
+        <file>images/content_1_changed.png</file>
+        <file>images/content_2.png</file>
+        <file>images/content_3.png</file>
+        <file>images/content_4.png</file>
+        <file>images/content_4_cnanged.png</file>
+        <file>images/content_5.png</file>
+        <file>images/content_5_changed.png</file>
+        <file>images/content_6.png</file>
+        <file>images/content_6_changed.png</file>
+        <file>images/content_7.png</file>
+        <file>images/content_8.png</file>
+        <file>images/content_8_changed.png</file>
+        <file>images/content_9.png</file>
+        <file>images/content_9_changed.png</file>
+        <file>images/Duxit FB picture_1_changed.png</file>
     </qresource>
 </RCC>
